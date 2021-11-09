@@ -1,10 +1,20 @@
 const mongoose = require('mongoose')
 const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
 
 module.exports = async (req, res) =>{
-    console.log('request received here')
-    _id = req.params.id
-    console.log(_id)
+    // _id = req.params.id
+    const id = req.params.id
+
+    const {_id} = await jwt.decode(req.headers.authorization.split(' ')[1], jwt_admin_key)
+    const isThisAdminOwner = await mongoose.model('Admin').findOne({_id});
+    console.log(isThisAdminOwner)
+    if(req.params.id != _id && !isThisAdminOwner.isOwner){
+        res.status(403).send({
+            msg : 'access denied'
+        })
+        return
+    }
 
     //making sure that data provided compeletrly
 
@@ -14,8 +24,8 @@ module.exports = async (req, res) =>{
         })
         return
     }
-    // making sure that this id exist
-    const admin = await mongoose.model('Admin').findOne({_id});
+    // making sure that this id exist          .findOne({_id})
+    const admin = await mongoose.model('Admin').findOne({_id : id});
     if(!admin){
         res.status(404).send({
             msg : 'this admin does not exist'
@@ -43,8 +53,8 @@ module.exports = async (req, res) =>{
 
     // storing changes in database
 
-    try {
-        await mongoose.model('Admin').updateOne({_id},{firstname : req.body.firstname, lastname : req.body.lastname, username : req.body.username ,password : await hashedNewPassword(newPassword)})
+    try {                          //.updateOne({_id})
+        await mongoose.model('Admin').updateOne({_id: id},{firstname : req.body.firstname, lastname : req.body.lastname, username : req.body.username ,password : await hashedNewPassword(newPassword)})
         console.log(admin.password)
         res.status(200).send({
             msg : 'updated'

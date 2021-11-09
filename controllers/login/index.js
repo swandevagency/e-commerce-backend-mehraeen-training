@@ -7,7 +7,7 @@ const jwt = require('jsonwebtoken');
 
 jwt_user_key = 'we-will-make-this-one-different-for-users'
 jwt_admin_key = 'this-is-secret-key-for-admin-jwt-tokens'
-jwt_owner_key = 'this-secret-key-has-been-maden-for-owner'
+//jwt_owner_key = 'this-secret-key-has-been-maden-for-owner'
 
 module.exports = async (req, res) =>{
     const {username, password, logInAsAdmin} = req.body;
@@ -44,23 +44,32 @@ module.exports = async (req, res) =>{
             })
             return
         }
-        if(!admin.isOwner){
-            const {_id} = admin;
-            const token = await jwt.sign({_id}, jwt_admin_key,{});
-            res.status(200).send({
+        const {_id} = admin
+        const token = await jwt.sign({_id}, jwt_admin_key,{});
+        res.status(200).send({
+            _id,
             token,
             msg : `welcome ${admin.username}`
-            })
-            return
-        }
-        if(admin.isOwner){
-            const {_id} = admin;
-            const token = await jwt.sign({_id}, jwt_owner_key,{});
-            res.status(200).send({
-            token,
-            msg : `welcome ${admin.username}`
-            })
-        }   
+        })
+        // if(!admin.isOwner){
+        //     const {_id} = admin;
+        //     const token = await jwt.sign({_id}, jwt_admin_key,{});
+        //     res.status(200).send({
+        //         _id,
+        //         token,
+        //         msg : `welcome ${admin.username}`
+        //     })
+        //     return
+        // }
+        // if(admin.isOwner){
+        //     const {_id} = admin;
+        //     const token = await jwt.sign({_id}, jwt_owner_key,{});
+        //     res.status(200).send({
+        //         _id,
+        //         token,
+        //         msg : `welcome ${admin.username}`
+        //     })
+        // }   
     }
     //validating users
     if(!logInAsAdmin){

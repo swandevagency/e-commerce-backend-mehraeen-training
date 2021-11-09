@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
-jwt_owner_key = 'this-secret-key-has-been-maden-for-owner'
+const mongoose = require('mongoose')
+jwt_admin_key = 'this-is-secret-key-for-admin-jwt-tokens'
 
 
 
@@ -11,7 +12,21 @@ module.exports = async (req, res, next) =>{
         return
     }
     try {
-        jwt.verify(req.headers.authorization.split(' ')[1], jwt_owner_key)
+        const {_id} = await jwt.decode(req.headers.authorization.split(' ')[1], jwt_admin_key)
+        const id = _id
+        console.log(id);
+        const validOwner = await mongoose.model('Admin').findOne({_id : id})
+        console.log(validOwner);
+        console.log(validOwner.isOwner);
+        if(validOwner.isOwner){
+            next()
+        }
+        if(!validOwner.isOwner){
+            res.status(403).send({
+                msg : 'access denied'
+            })
+            return
+        }
     } catch (error) {
         console.log(error)
             res.status(403).send({
@@ -19,5 +34,5 @@ module.exports = async (req, res, next) =>{
             })
         return
         }
-    next()
+    //next()
 }
