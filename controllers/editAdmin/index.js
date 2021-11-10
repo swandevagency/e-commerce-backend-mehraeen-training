@@ -3,29 +3,40 @@ const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 
 module.exports = async (req, res) =>{
-    // _id = req.params.id
-    const id = req.params.id
-
-    const {_id} = await jwt.decode(req.headers.authorization.split(' ')[1], jwt_admin_key)
-    const isThisAdminOwner = await mongoose.model('Admin').findOne({_id});
-    console.log(isThisAdminOwner)
-    if(req.params.id != _id && !isThisAdminOwner.isOwner){
-        res.status(403).send({
-            msg : 'access denied'
-        })
-        return
-    }
-
+    
     //making sure that data provided compeletrly
-
     if(!req.body.firstname || !req.body.lastname || !req.body.username || !req.body.password){
         res.status(400).send({
             msg : 'please fill all fields'
         })
         return
     }
-    // making sure that this id exist          .findOne({_id})
-    const admin = await mongoose.model('Admin').findOne({_id : id});
+
+    // making sure that the admin is the real holder of admin acc or it is the owner
+    if(req.admin._id != req.params.id && !req.admin.isOwner){
+        res.status(403).send({
+            msg : 'access denied'
+        })
+        return
+    }
+    // hard way
+    // const id = req.params.id
+
+    // const {_id} = await jwt.decode(req.headers.authorization.split(' ')[1], jwt_admin_key)
+    // const isThisAdminOwner = await mongoose.model('Admin').findOne({_id});
+    // console.log(isThisAdminOwner)
+    // if(req.params.id != _id && !isThisAdminOwner.isOwner){
+    //     res.status(403).send({
+    //         msg : 'access denied'
+    //     })
+    //     return
+    // }
+
+    
+
+    
+    // how this works with hard way            .findOne({_id : id})
+    const admin = await mongoose.model('Admin').findOne({_id : req.params.id});
     if(!admin){
         res.status(404).send({
             msg : 'this admin does not exist'
@@ -54,7 +65,7 @@ module.exports = async (req, res) =>{
     // storing changes in database
 
     try {                          //.updateOne({_id})
-        await mongoose.model('Admin').updateOne({_id: id},{firstname : req.body.firstname, lastname : req.body.lastname, username : req.body.username ,password : await hashedNewPassword(newPassword)})
+        await mongoose.model('Admin').updateOne({_id: req.params.id},{firstname : req.body.firstname, lastname : req.body.lastname, username : req.body.username ,password : await hashedNewPassword(newPassword)})
         console.log(admin.password)
         res.status(200).send({
             msg : 'updated'
