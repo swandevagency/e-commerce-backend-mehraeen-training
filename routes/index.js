@@ -1,7 +1,7 @@
 const router = require('express').Router();
 
 const {addproduct}          = require('../controllers/index')
-const {isAdmin}             = require('../middlewares/requireLogin/index')
+const {requireAdminLogin}   = require('../middlewares/requireLogin/index')
 const {isOwner}             = require('../middlewares/requireLogin//index')
 const {isUserAuthenticated} = require('../middlewares/requireLogin/index')
 const {register}            = require('../controllers/index')
@@ -9,6 +9,8 @@ const {login}               = require('../controllers/index')
 const {createAdmin}         = require('../controllers/index')
 const {getAdminsInfo}       = require('../controllers/index')
 const {editAdmin}           = require('../controllers/index')
+const {personalAdminInfo}   = require('../controllers/index')
+const {deletingAdmin}       = require('../controllers/index')
 
 const handeler = async (req, res)=>{
      console.log('this is handeler')
@@ -34,11 +36,16 @@ router.post('/register',register)
 
 router.post('/login', login)
 
-router.post('/admins',isOwner,createAdmin)
+router.post('/admins',requireAdminLogin, isOwner, createAdmin)
 
-router.get('/admins',isOwner,getAdminsInfo)
+router.get('/admins',requireAdminLogin, isOwner, getAdminsInfo)
 
-router.put('/admins/:id',isOwner,editAdmin)
+router.get('/admins/:id', requireAdminLogin, personalAdminInfo)
+
+router.put('/admins/:id', requireAdminLogin, editAdmin)
+
+router.delete('/admins/:id',requireAdminLogin,isOwner,deletingAdmin)
+
 
 
 

@@ -4,6 +4,9 @@ const login = require('./login/index')
 const createAdmin = require('./createAdmin/index')
 const getAdminsInfo = require('./getAdminsInfo/index.')
 const editAdmin = require('./editAdmin/index')
+const personalAdminInfo = require('./personalAdminInfo/index')
+const deletingAdmin = require('./deletingAdmin/index')
+
 
 
 
@@ -15,5 +18,7 @@ module.exports = {
     login,
     createAdmin,
     getAdminsInfo,
-    editAdmin
+    editAdmin,
+    personalAdminInfo,
+    deletingAdmin
 }
