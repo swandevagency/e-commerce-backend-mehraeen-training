@@ -4,7 +4,9 @@ const port = 5000;
 const cors = require('cors');
 const mongoose = require('mongoose');
 const expressBusboy = require('express-busboy');
-expressBusboy.extend(app);
+// expressBusboy.extend(app,{upload : true , path : 'uploads/images'});
+
+
 const { router } = require('./routes');
 const initiateApplication = require('./initiate_application/index')
 
@@ -22,6 +24,7 @@ err => {console.log('can not connect to database')})
 // middlewares
 
 app.use(cors());
+
 
 app.use(express.urlencoded({ extended : true}));
 

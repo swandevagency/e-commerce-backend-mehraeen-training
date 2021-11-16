@@ -12,6 +12,7 @@ module.exports = async (req, res, next) =>{
     }
     try {
         jwt.verify(req.headers.authorization.split(' ')[1], jwt_user_key)
+        next()
     } catch (error) {
         console.log(error)
             res.status(403).send({
@@ -19,5 +20,4 @@ module.exports = async (req, res, next) =>{
             })
         return
         }
-    next()
 }

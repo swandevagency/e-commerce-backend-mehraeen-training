@@ -15,7 +15,8 @@ const productSchema = new mongoose.Schema({
     },
     category : {
         type : 'string'
-    }
+    },
+    images : []
 })
 
 module.exports = productSchema
