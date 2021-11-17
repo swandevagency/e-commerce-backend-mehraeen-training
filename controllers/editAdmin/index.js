@@ -46,7 +46,7 @@ module.exports = async (req, res) =>{
 
     // making sure that new username already does not exist
     const takenUsername = await mongoose.model('Admin').findOne({username : req.body.username})
-    if(takenUsername){
+    if(takenUsername && takenUsername._id != req.params.id){
         res.status(400).send({
             msg : 'this username already exist'
         })

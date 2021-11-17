@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const {Schema} = require('mongoose')
 
 const productSchema = new mongoose.Schema({
     name : {
@@ -14,7 +15,8 @@ const productSchema = new mongoose.Schema({
         type : 'number'
     },
     category : {
-        type : 'string'
+        type : Schema.Types.ObjectId,
+        ref: "Category"
     },
     images : []
 })
