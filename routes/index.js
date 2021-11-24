@@ -24,28 +24,32 @@ const {fetchCategories}     = require('../controllers/index')
 const {productsInfo}        = require('../controllers/index')
 const {deleteProduct}       = require('../controllers/index')
 const {editProduct}         = require('../controllers/index')
+const {sendImage}           = require('../controllers/index')
+const {addCarouselImage}    = require('../controllers/index')
+const {carouselInfo}        = require('../controllers/index')
+const {deleteCarouselImage} = require('../controllers/index')
+const {editCarousel}        = require('../controllers/index')
 
 const handeler = async (req, res)=>{
      console.log('this is handeler')
      console.log(req.params)
      console.log(req.body)
      console.log(req.file);
-     res.status(200).send('your request received to handeler')
 }
 
 
 //////////////////////////////////////////////////
-router.get('/carousel', handeler)
 
 router.post('/products/buy:id',handeler)
 
-router.post('/carousel',handeler)
 
 /////////////////////////////////
 
 router.post('/register',register)
 
 router.post('/login', login)
+
+router.get('/images/:uui',sendImage)
 
 router.post('/admins',requireAdminLogin, isOwner, createAdmin)
 
@@ -67,6 +71,8 @@ router.get('/products',productsInfo)
 
 router.delete('/products/:id',deleteProduct)
 
+router.put('/products/:id', editProduct)
+
 router.post('/categories',createCategory)
 
 router.delete('/categories/:id',deleteCategory)
@@ -74,13 +80,18 @@ router.delete('/categories/:id',deleteCategory)
 router.put('/categories/:id',editCategory)
 
 router.get('/categories',fetchCategories)
+
+router.post('/carousel',uploadMiddleware,addCarouselImage)
+
+router.get('/carousel',carouselInfo)
+
+router.delete('/carousel/:id',deleteCarouselImage)
+
+router.put('/carousel/:id',editCarousel)
 /////////////////////////////////////////////////////////////////////
-router.put('/products/:id', editProduct)
 
 
-
-
-router.post('/test',handeler)
+router.get('/test',handeler)
 
 
 

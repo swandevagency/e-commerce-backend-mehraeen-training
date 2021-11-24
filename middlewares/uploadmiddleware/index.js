@@ -20,7 +20,7 @@ const upload = multer({
     }
 })
 const uploadMiddleware = async (req, res, next) =>{
-    upload.single('product-image')(req, res, (err)=>{
+    upload.single('image')(req, res, (err)=>{
         if(req.file == undefined){
             res.status(400).send({
                 msg : 'please provide an image'

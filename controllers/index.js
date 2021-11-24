@@ -15,6 +15,11 @@ const fetchCategories = require('./fetchCategories/index')
 const productsInfo = require('./productsInfo/index')
 const deleteProduct = require('./deleteProduct/index')
 const editProduct = require('./editProduct/index')
+const sendImage = require('./sendImage/index')
+const addCarouselImage = require('./addCarouselImage/index')
+const carouselInfo = require('./carouselInfo/index')
+const deleteCarouselImage = require('./deleteCarouselImage/index')
+const editCarousel = require('./editCarousel/index')
 
 
 
@@ -38,5 +43,10 @@ module.exports = {
     fetchCategories,
     productsInfo,
     deleteProduct,
-    editProduct
+    editProduct,
+    sendImage,
+    addCarouselImage,
+    carouselInfo,
+    deleteCarouselImage,
+    editCarousel
 }

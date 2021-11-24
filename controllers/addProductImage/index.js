@@ -5,7 +5,7 @@ module.exports = async(req, res)=>{
     try {
         const product = await mongoose.model('Product').findOne({_id : req.params.id})
         let {images} = product 
-        images.push(`${req.file.filename}`)
+        images.push(`/images/${req.file.filename}`)
         await mongoose.model('Product').updateOne({_id : req.params.id},{images})
         .then(() =>{
         res.status(200).send({
