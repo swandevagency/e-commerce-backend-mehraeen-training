@@ -8,6 +8,7 @@ const expressBusboy = require('express-busboy');
 
 
 const { router } = require('./routes');
+const checkingEssentials = require('./checkingEssentials/index')
 const initiateApplication = require('./initiate_application/index')
 
 
@@ -36,7 +37,7 @@ app.use('/', router)
 //     console.log(req.body)
 //     res.send('recived')
 // })
-
+checkingEssentials();
 initiateApplication();
 
 // running server

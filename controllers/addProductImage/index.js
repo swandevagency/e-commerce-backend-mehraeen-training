@@ -7,11 +7,9 @@ module.exports = async(req, res)=>{
         let {images} = product 
         images.push(`/images/${req.file.filename}`)
         await mongoose.model('Product').updateOne({_id : req.params.id},{images})
-        .then(() =>{
         res.status(200).send({
             msg : 'your product image added'
         })
-    })
     } catch (error) {
         console.log(error)
         res.status(404).send({

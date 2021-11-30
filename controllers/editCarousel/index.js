@@ -22,4 +22,4 @@ module.exports = async(req, res) =>{
         })
     }
 }
-// if user wants to just update url can use this function and if it wants to change the picture must creatte a new carousel with the same url and its cause iam too lazy for that now
+// if user wants to just update url can use this function and if it wants to change the picture must creatte a new carousel with the same url

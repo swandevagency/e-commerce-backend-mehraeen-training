@@ -1,8 +1,6 @@
 const mongoose = require('mongoose')
 
 module.exports = async (req, res) =>{
-    console.log(req.body)
-    console.log('request received to carousel')
     try {
         const carousel = await new mongoose.model('Carousel')({
             url : req.body.url,

@@ -5,7 +5,7 @@ module.exports = async (req, res) =>{
     const {firstname,lastname,username, password} = req.body;
     if(!firstname){
         res.status(400).send({
-            msg : 'please provide username'
+            msg : 'please provide firstname'
         })
         return
     }

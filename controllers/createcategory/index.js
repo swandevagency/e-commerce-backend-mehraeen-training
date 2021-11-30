@@ -21,10 +21,17 @@ module.exports = async (req, res) =>{
         })
         return
     }
-    await mongoose.model('Category').create({
-        name
-    })
-    res.status(200).send({
-        msg : 'category added'
-    })
+    try {
+        await mongoose.model('Category').create({
+            name
+        })
+        res.status(200).send({
+            msg : 'category added'
+        })
+    } catch (error) {
+        console.log(error)
+        res.status(500).send({
+            msg : 'something went wrong'
+        })
+    }
 }

@@ -24,7 +24,7 @@ module.exports = async (req, res) =>{
         return
     }
     const productExist = await mongoose.model('Product').findOne({name})
-    if(productExist && productExist._id != _id){
+    if(productExist && productExist._id.toString() !== _id.toString()){
         res.status(400).send({
             msg : 'this name has been taken'
         })

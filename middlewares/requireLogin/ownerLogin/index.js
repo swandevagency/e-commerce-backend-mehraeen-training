@@ -1,5 +1,3 @@
-const jwt = require('jsonwebtoken');
-const mongoose = require('mongoose')
 jwt_admin_key = 'this-is-secret-key-for-admin-jwt-tokens'
 
 

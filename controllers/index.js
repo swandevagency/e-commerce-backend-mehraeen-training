@@ -20,6 +20,9 @@ const addCarouselImage = require('./addCarouselImage/index')
 const carouselInfo = require('./carouselInfo/index')
 const deleteCarouselImage = require('./deleteCarouselImage/index')
 const editCarousel = require('./editCarousel/index')
+const singleProductInfo = require('./singleProductInfo/index')
+const editTitle = require('./editTitle/index')
+const editAdminPersonalInfo = require('./editAdminPersonalInfo/index')
 
 
 
@@ -48,5 +51,8 @@ module.exports = {
     addCarouselImage,
     carouselInfo,
     deleteCarouselImage,
-    editCarousel
+    editCarousel,
+    singleProductInfo,
+    editTitle,
+    editAdminPersonalInfo
 }

@@ -15,10 +15,8 @@ module.exports = async (req, res) =>{
             return
         }
         await mongoose.model('Product').updateOne({_id : req.params.id},{images})
-        .then(() =>{
-            res.status(200).send({
-                msg : 'image deleted'
-            })
+        res.status(200).send({
+            msg : 'image deleted'
         })
     } catch (error) {
         console.log(error)

@@ -11,8 +11,8 @@ module.exports = async (req, res) =>{
         })
         return
     }
-    const newProduct = await mongoose.model('Product').findOne({name : req.body.name})
-    if(newProduct){
+    const productAlreadyExist = await mongoose.model('Product').findOne({name : req.body.name})
+    if(productAlreadyExist){
         res.status(400).send({
             msg : 'there is a product with this name'
         })
@@ -32,16 +32,22 @@ module.exports = async (req, res) =>{
         })
         return
     }
-    // const yo = product.findOne({_id}).populate('category');
-    const product =  new mongoose.model('Product')({
-        name ,
-        description ,
-        price ,
-        discount,
-        category: categoryId,
-    })
-    await product.save();
-    res.status(200).send({
-        product: await product.populate('category')
-    })
+    try {
+        const product =  new mongoose.model('Product')({
+            name ,
+            description ,
+            price ,
+            discount,
+            category: categoryId,
+        })
+        await product.save();
+        res.status(200).send({
+            product: await product.populate('category')
+        })
+    } catch (error) {
+        console.log(error)
+        res.status(500).send({
+            msg : 'something went wrong'
+        })
+    }   
 }

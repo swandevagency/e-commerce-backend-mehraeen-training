@@ -10,7 +10,7 @@ module.exports = async (req, res) =>{
     
     const _id = req.params.id
     const categoryExist = await mongoose.model('Category').findOne({name : req.body.name})
-    if(categoryExist){
+    if(categoryExist && categoryExist._id.toString() !== _id.toString()){
         res.status(400).send({
             msg : 'this name has been used for another category'
         })

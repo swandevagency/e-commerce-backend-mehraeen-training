@@ -2,7 +2,6 @@
 
 const mongoose = require('mongoose')
 const bcrypt = require('bcrypt');
-const { response } = require('express');
 
 module.exports = async (req, res) =>{
     const {username, password, email} = req.body;
