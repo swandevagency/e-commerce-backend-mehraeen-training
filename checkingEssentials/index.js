@@ -3,7 +3,6 @@ require('../models/index')
 
 module.exports = async () =>{
     const titleAlreadyExists = await mongoose.model('Homepage').countDocuments()
-    console.log(titleAlreadyExists)
     if(titleAlreadyExists > 0){
         return
     }
