@@ -14,6 +14,7 @@ module.exports = async (req, res, next) =>{
         const {_id} = await jwt.decode(req.headers.authorization.split(' ')[1], jwt_admin_key)
         const admin = await mongoose.model('Admin').findOne({_id})
         req.admin = admin
+        next()
     } catch (error) {
         console.log(error)
             res.status(403).send({
@@ -21,5 +22,4 @@ module.exports = async (req, res, next) =>{
             })
         return
         }
-    next()
 }

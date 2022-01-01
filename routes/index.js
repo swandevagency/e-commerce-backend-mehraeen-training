@@ -3,35 +3,38 @@ const router = require('express').Router();
 
 
 
-const  uploadMiddleware      = require('../middlewares/uploadmiddleware/index')
-const {requireAdminLogin}    = require('../middlewares/requireLogin/index')
-const {isOwner}              = require('../middlewares/requireLogin/index')
-const {isUserAuthenticated}  = require('../middlewares/requireLogin/index')
-const {createProduct}        = require('../controllers/index')
-const {register}             = require('../controllers/index')
-const {login}                = require('../controllers/index') 
-const {createAdmin}          = require('../controllers/index')
-const {getAdminsInfo}        = require('../controllers/index')
-const {editAdmin}            = require('../controllers/index')
-const {personalAdminInfo}    = require('../controllers/index')
-const {deletingAdmin}        = require('../controllers/index')
-const {addProductImage}      = require('../controllers/index')
-const {deleteProductImg}     = require('../controllers/index')
-const {createCategory}       = require('../controllers/index')
-const {deleteCategory}       = require('../controllers/index')
-const {editCategory}         = require('../controllers/index')
-const {fetchCategories}      = require('../controllers/index')
-const {productsInfo}         = require('../controllers/index')
-const {deleteProduct}        = require('../controllers/index')
-const {editProduct}          = require('../controllers/index')
-const {sendImage}            = require('../controllers/index')
-const {addCarouselImage}     = require('../controllers/index')
-const {carouselInfo}         = require('../controllers/index')
-const {deleteCarouselImage}  = require('../controllers/index')
-const {editCarousel}         = require('../controllers/index')
-const {singleProductInfo}    = require('../controllers/index')
-const {editTitle}            = require('../controllers/index')
-const{editAdminPersonalInfo} = require('../controllers/index')
+const  uploadMiddleware        = require('../middlewares/uploadmiddleware/index')
+const {requireAdminLogin}      = require('../middlewares/requireLogin/index')
+const {isOwner}                = require('../middlewares/requireLogin/index')
+const {isUserAuthenticated}    = require('../middlewares/requireLogin/index')
+const {createProduct}          = require('../controllers/index')
+const {register}               = require('../controllers/index')
+const {login}                  = require('../controllers/index') 
+const {createAdmin}            = require('../controllers/index')
+const {getAdminsInfo}          = require('../controllers/index')
+const {editAdmin}              = require('../controllers/index')
+const {personalAdminInfo}      = require('../controllers/index')
+const {deletingAdmin}          = require('../controllers/index')
+const {addProductImage}        = require('../controllers/index')
+const {deleteProductImg}       = require('../controllers/index')
+const {createCategory}         = require('../controllers/index')
+const {deleteCategory}         = require('../controllers/index')
+const {editCategory}           = require('../controllers/index')
+const {fetchCategories}        = require('../controllers/index')
+const {productsInfo}           = require('../controllers/index')
+const {deleteProduct}          = require('../controllers/index')
+const {editProduct}            = require('../controllers/index')
+const {sendImage}              = require('../controllers/index')
+const {addCarouselImage}       = require('../controllers/index')
+const {carouselInfo}           = require('../controllers/index')
+const {deleteCarouselImage}    = require('../controllers/index')
+const {editCarousel}           = require('../controllers/index')
+const {singleProductInfo}      = require('../controllers/index')
+const {editTitle}              = require('../controllers/index')
+const {editAdminPersonalInfo}  = require('../controllers/index')
+const {addUserFavoriteProduct} = require('../controllers/index')
+const {getUsersInfo}           = require('../controllers/index')
+const {createSubCategory}      = require('../controllers/index')
 
 const handeler = async (req, res)=>{
      console.log('this is handeler')
@@ -97,6 +100,12 @@ router.get('/carousel',carouselInfo)//
 router.delete('/carousel/:id',requireAdminLogin,deleteCarouselImage)//
 
 router.put('/carousel/:id',requireAdminLogin,editCarousel)//
+
+router.post('/user',isUserAuthenticated,addUserFavoriteProduct)
+
+router.get('/users',requireAdminLogin,getUsersInfo)
+
+router.post('/subcategory',requireAdminLogin,createSubCategory)
 
 
 module.exports = {

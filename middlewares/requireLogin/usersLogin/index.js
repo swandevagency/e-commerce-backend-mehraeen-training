@@ -1,4 +1,5 @@
-const jwt = require('jsonwebtoken');        
+const jwt = require('jsonwebtoken');
+const mongoose = require('mongoose')        
 jwt_user_key = 'we-will-make-this-one-different-for-users'
 
 
@@ -11,7 +12,10 @@ module.exports = async (req, res, next) =>{
         return
     }
     try {
-        jwt.verify(req.headers.authorization.split(' ')[1], jwt_user_key)
+        //jwt.verify(req.headers.authorization.split(' ')[1], jwt_user_key)
+        const {_id} = await jwt.decode(req.headers.authorization.split(' ')[1], jwt_user_key)
+        const user = await mongoose.model('User').findOne({_id})
+        req.user = user
         next()
     } catch (error) {
         console.log(error)
@@ -20,4 +24,4 @@ module.exports = async (req, res, next) =>{
             })
         return
         }
-}
+};

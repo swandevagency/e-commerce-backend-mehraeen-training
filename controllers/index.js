@@ -23,6 +23,9 @@ const editCarousel = require('./editCarousel/index')
 const singleProductInfo = require('./singleProductInfo/index')
 const editTitle = require('./editTitle/index')
 const editAdminPersonalInfo = require('./editAdminPersonalInfo/index')
+const addUserFavoriteProduct = require('./addUserFavoriteProduct/index')
+const getUsersInfo = require('./getUsersInfo/index')
+const createSubCategory = require('./createSubCategory/index')
 
 
 
@@ -54,5 +57,8 @@ module.exports = {
     editCarousel,
     singleProductInfo,
     editTitle,
-    editAdminPersonalInfo
+    editAdminPersonalInfo,
+    addUserFavoriteProduct,
+    getUsersInfo,
+    createSubCategory
 }

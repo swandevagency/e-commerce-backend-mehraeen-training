@@ -6,6 +6,7 @@ const productSchema = require('./products/index');
 const userSchema = require('./users/index');
 const unUsedImageSchema = require('./unUsedimages/index')
 const homepageSchema = require('./Homepage/index')
+const subCategorySchema = require('./subCategories/index')
 
 mongoose.model('Admin', adminSchema);
 mongoose.model('Carousel', carouselSchema);
@@ -14,3 +15,4 @@ mongoose.model('Product', productSchema );
 mongoose.model('User',userSchema)
 mongoose.model('UnUsedImages',unUsedImageSchema)
 mongoose.model('Homepage',homepageSchema)
+mongoose.model('subCategory',subCategorySchema)

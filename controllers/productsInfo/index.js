@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 module.exports = async (req, res) =>{
-    const products = await mongoose.model('Product').find()
+    const products = await mongoose.model('Product').find().populate('category')
     if(!products){
         res.status(500).send({
             msg : 'some thing went wrong'

@@ -14,11 +14,25 @@ const productSchema = new mongoose.Schema({
     discount : {
         type : 'number'
     },
+    // uniqueName : {
+    //     type: 'String',
+    //     default: `${this.name}.${this.category.name}`,
+    //     required: true
+    // },
     category : {
         type : Schema.Types.ObjectId,
         ref: "Category"
     },
-    images : []
+    subCategory : {
+        type : Schema.Types.ObjectId,
+        ref : "subCategory"
+    },
+    details: [
+
+    ],
+    images : [
+
+    ]
 })
 
 module.exports = productSchema

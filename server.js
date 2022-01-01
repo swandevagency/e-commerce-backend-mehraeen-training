@@ -3,7 +3,7 @@ const app = express();
 const port = 5000;
 const cors = require('cors');
 const mongoose = require('mongoose');
-const expressBusboy = require('express-busboy');
+//const expressBusboy = require('express-busboy');
 // expressBusboy.extend(app,{upload : true , path : 'uploads/images'});
 //adding a comment for testing git
 
@@ -34,10 +34,7 @@ app.use(express.json());
 
 app.use('/', router)
 
-// app.post('/addproduct',(req, res) =>{
-//     console.log(req.body)
-//     res.send('recived')
-// })
+
 checkingEssentials();
 initiateApplication();
 
