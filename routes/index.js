@@ -35,6 +35,7 @@ const {editAdminPersonalInfo}  = require('../controllers/index')
 const {addUserFavoriteProduct} = require('../controllers/index')
 const {getUsersInfo}           = require('../controllers/index')
 const {createSubCategory}      = require('../controllers/index')
+const {addFilter}              = require('../controllers/index')
 
 const handeler = async (req, res)=>{
      console.log('this is handeler')
@@ -106,6 +107,8 @@ router.post('/user',isUserAuthenticated,addUserFavoriteProduct)
 router.get('/users',requireAdminLogin,getUsersInfo)
 
 router.post('/subcategory',requireAdminLogin,createSubCategory)
+
+router.post('/subcategory/:subCategoryId',requireAdminLogin,addFilter)
 
 
 module.exports = {
