@@ -26,6 +26,7 @@ const editAdminPersonalInfo = require('./editAdminPersonalInfo/index')
 const addUserFavoriteProduct = require('./addUserFavoriteProduct/index')
 const getUsersInfo = require('./getUsersInfo/index')
 const createSubCategory = require('./createSubCategory/index')
+const addFilter = require('./addFilter/index')
 
 
 
@@ -60,5 +61,6 @@ module.exports = {
     editAdminPersonalInfo,
     addUserFavoriteProduct,
     getUsersInfo,
-    createSubCategory
+    createSubCategory,
+    addFilter
 }
