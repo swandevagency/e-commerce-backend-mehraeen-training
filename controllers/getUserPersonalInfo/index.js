@@ -7,7 +7,7 @@ module.exports = async (req, res) =>{
     try {
         const user = await mongoose.model('User').findOne({_id}).populate([{path:'favoriteProducts'},{path:'boughtProducts'}])
         if(!user){
-            res.status(500).sedn({
+            res.status(500).send({
                 msg : 'something went wrong'
             })
             return

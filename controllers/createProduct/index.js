@@ -42,9 +42,9 @@ module.exports = async (req, res) =>{
     const productAlreadyExist = await mongoose.model('Product').findOne({name, category:categoryId, subCategory:subCategoryId})
     if(productAlreadyExist){
         res.status(400).send({
-            msg : 'this product already exists',
-            //productAlreadyExist: await productAlreadyExist.populate([{path : 'category'},{path : 'subCategory'}])
-            product : productAlreadyExist._id
+            msg : 'a product with the same name, category, and sub category already exist',
+            //productAlreadyExist: await productAlreadyExist._id
+            product :  await productAlreadyExist.populate([{path: 'category'},{path : 'subCategory'}])
         })
         return
     }

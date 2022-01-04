@@ -102,17 +102,17 @@ router.put('/categories/:id',requireAdminLogin,editCategory)//
 
 router.get('/categories',fetchCategories)//
 
-router.post('/subcategory',requireAdminLogin,createSubCategory)
+router.post('/subcategory',requireAdminLogin,createSubCategory)//
 
 router.post('/subcategory/:subcategoryid',requireAdminLogin,uploadMiddleware,editSubCategoryImage)
 
-router.get('/subcategory',getSubCategoryInfo)
+router.get('/subcategory',getSubCategoryInfo)//
 
-router.get('/subcategory/:subcategoryid',getOneSubCategoryInfo)
+router.get('/subcategory/:subcategoryid',getOneSubCategoryInfo)//
 
-router.delete('/subcategory/:subcategoryid',requireAdminLogin,deleteSubCategory)
+router.delete('/subcategory/:subcategoryid',requireAdminLogin,deleteSubCategory)//
 
-router.put('/subcategory/:subcategoryid',requireAdminLogin,updateSubCategory)
+router.put('/subcategory/:subcategoryid',requireAdminLogin,updateSubCategory)//
 
 router.post('/carousel',requireAdminLogin,uploadMiddleware,addCarouselImage)//
 
