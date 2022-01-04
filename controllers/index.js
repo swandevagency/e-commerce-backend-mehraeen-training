@@ -26,8 +26,13 @@ const editAdminPersonalInfo = require('./editAdminPersonalInfo/index')
 const addUserFavoriteProduct = require('./addUserFavoriteProduct/index')
 const getUsersInfo = require('./getUsersInfo/index')
 const createSubCategory = require('./createSubCategory/index')
-const addFilter = require('./addFilter/index')
-
+const updateSubCategory = require('./updateSubCategory/index')
+const getSubCategoryInfo = require('./getSubCategoryInfo/index')
+const getUserPersonalInfo = require('./getUserPersonalInfo/index')
+const deleteSubCategory = require('./deleteSubCategory/index')
+const addCategoryImage = require('./addCategoryImage/index')
+const editSubCategoryImage = require('./editSubCategoryImage/index')
+const getOneSubCategoryInfo = require('./getOneSubCategoryInfo')
 
 
 
@@ -62,5 +67,11 @@ module.exports = {
     addUserFavoriteProduct,
     getUsersInfo,
     createSubCategory,
-    addFilter
+    updateSubCategory,
+    getSubCategoryInfo,
+    getUserPersonalInfo,
+    deleteSubCategory,
+    addCategoryImage,
+    editSubCategoryImage,
+    getOneSubCategoryInfo
 }

@@ -42,11 +42,26 @@ module.exports = async (req, res) =>{
         }
         const {_id} = admin
         const token = await jwt.sign({_id}, jwt_admin_key,{});
-        res.status(200).send({
-            _id,
-            token,
-            msg : `welcome ${admin.username}`
-        })
+        if(admin.isOwner){
+            res.status(200).send({
+                token,
+                role : 'owner',
+                msg : `welcome dear ${admin.username}`
+            })
+            return
+        }
+        if(!admin.isOwner){
+            res.status(200).send({
+                token,
+                role : 'admin',
+                msg : `welcome ${admin.username}`
+            })
+        }
+        // res.status(200).send({
+        //     _id,
+        //     token,
+        //     msg : `welcome ${admin.username}`
+        // })
     }
     //validating users
     if(!logInAsAdmin){
@@ -68,6 +83,7 @@ module.exports = async (req, res) =>{
         const token = await jwt.sign({_id}, jwt_user_key,{});
         res.status(200).send({
             token,
+            role : 'user',
             msg : `welcome ${user.username}`
         })
     }

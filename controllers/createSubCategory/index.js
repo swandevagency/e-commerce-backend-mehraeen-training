@@ -11,7 +11,7 @@ module.exports = async (req, res) =>{
         })
         return
     }
-    const {name , categoryId} = req.body
+    const {name , categoryId, filters} = req.body
     if(!ObjectId.isValid(categoryId)){
         res.status(400).send({
             msg : 'please provide category id correctly'
@@ -21,7 +21,7 @@ module.exports = async (req, res) =>{
     const categoryIsValid = await mongoose.model('Category').findOne({_id : categoryId})
     if(!categoryIsValid){
         res.status(404).send({
-            msg : 'this category does not exists'
+            msg : 'this category does not exist'
         })
         return
     }
@@ -35,7 +35,8 @@ module.exports = async (req, res) =>{
     }
     const subcategory = new mongoose.model('subCategory')({
         name,
-        Category : categoryId
+        Category : categoryId,
+        filters
     })
     await subcategory.save()
     res.status(200).send({

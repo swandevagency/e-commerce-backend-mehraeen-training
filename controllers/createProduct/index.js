@@ -57,6 +57,8 @@ module.exports = async (req, res) =>{
             category: categoryId,
             subCategory : subCategoryId
         })
+        await product.populate('subCategory')
+        product.details = product.subCategory.filters
         await product.save();
         res.status(200).send({
             product: await product.populate([{path : 'category'},{path : 'subCategory'}])

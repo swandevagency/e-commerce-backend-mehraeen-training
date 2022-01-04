@@ -13,7 +13,9 @@ const subCategorySchema = new mongoose.Schema({
     filters: [
 
     ],
-    image:{}
+    image:{
+        type : 'string'
+    }
 })
 
 module.exports = subCategorySchema

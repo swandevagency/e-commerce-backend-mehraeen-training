@@ -35,7 +35,13 @@ const {editAdminPersonalInfo}  = require('../controllers/index')
 const {addUserFavoriteProduct} = require('../controllers/index')
 const {getUsersInfo}           = require('../controllers/index')
 const {createSubCategory}      = require('../controllers/index')
-const {addFilter}              = require('../controllers/index')
+const {updateSubCategory}      = require('../controllers/index')
+const {getSubCategoryInfo}     = require('../controllers/index')
+const {getUserPersonalInfo}    = require('../controllers/index')
+const {deleteSubCategory}      = require('../controllers/index')
+const {addCategoryImage}       = require('../controllers/index')
+const {editSubCategoryImage}   = require('../controllers/index')
+const {getOneSubCategoryInfo}  = require('../controllers/index')
 
 const handeler = async (req, res)=>{
      console.log('this is handeler')
@@ -88,11 +94,25 @@ router.put('/products/:id',requireAdminLogin, editProduct)//
 
 router.post('/categories',requireAdminLogin,createCategory)//
 
+router.post('/categories/:id',requireAdminLogin,uploadMiddleware,addCategoryImage)
+
 router.delete('/categories/:id',requireAdminLogin,deleteCategory)//
 
 router.put('/categories/:id',requireAdminLogin,editCategory)//
 
 router.get('/categories',fetchCategories)//
+
+router.post('/subcategory',requireAdminLogin,createSubCategory)
+
+router.post('/subcategory/:subcategoryid',requireAdminLogin,uploadMiddleware,editSubCategoryImage)
+
+router.get('/subcategory',getSubCategoryInfo)
+
+router.get('/subcategory/:subcategoryid',getOneSubCategoryInfo)
+
+router.delete('/subcategory/:subcategoryid',requireAdminLogin,deleteSubCategory)
+
+router.put('/subcategory/:subcategoryid',requireAdminLogin,updateSubCategory)
 
 router.post('/carousel',requireAdminLogin,uploadMiddleware,addCarouselImage)//
 
@@ -102,13 +122,14 @@ router.delete('/carousel/:id',requireAdminLogin,deleteCarouselImage)//
 
 router.put('/carousel/:id',requireAdminLogin,editCarousel)//
 
-router.post('/user',isUserAuthenticated,addUserFavoriteProduct)
+router.post('/user/me',isUserAuthenticated,addUserFavoriteProduct)
+
+router.get('/user/me',isUserAuthenticated,getUserPersonalInfo)
 
 router.get('/users',requireAdminLogin,getUsersInfo)
 
-router.post('/subcategory',requireAdminLogin,createSubCategory)
 
-router.post('/subcategory/:subCategoryId',requireAdminLogin,addFilter)
+
 
 
 module.exports = {
