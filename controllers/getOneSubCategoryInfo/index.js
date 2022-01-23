@@ -5,7 +5,7 @@ module.exports = async (req, res) =>{
         const _id = req.params.subcategoryid
         const subCategory = await mongoose.model('subCategory').findOne({_id})
         res.status(200).send({
-            subCategory
+            subCategory : await subCategory.populate('filters')
         })
     } catch (error) {
         console.log(error)

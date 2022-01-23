@@ -33,7 +33,10 @@ const deleteSubCategory = require('./deleteSubCategory/index')
 const addCategoryImage = require('./addCategoryImage/index')
 const editSubCategoryImage = require('./editSubCategoryImage/index')
 const getOneSubCategoryInfo = require('./getOneSubCategoryInfo')
-
+const addFilter = require('./addFilter/index')
+const editFilter = require('./editFilter/index')
+const deleteFilter = require('./deleteFilter/index')
+const fetchFiltersInfo = require('./fetchFiltersInfo/index')
 
 
 
@@ -73,5 +76,9 @@ module.exports = {
     deleteSubCategory,
     addCategoryImage,
     editSubCategoryImage,
-    getOneSubCategoryInfo
+    getOneSubCategoryInfo,
+    addFilter,
+    editFilter,
+    deleteFilter,
+    fetchFiltersInfo
 }

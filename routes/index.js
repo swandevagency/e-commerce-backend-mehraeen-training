@@ -42,6 +42,10 @@ const {deleteSubCategory}      = require('../controllers/index')
 const {addCategoryImage}       = require('../controllers/index')
 const {editSubCategoryImage}   = require('../controllers/index')
 const {getOneSubCategoryInfo}  = require('../controllers/index')
+const {addFilter}              = require('../controllers/index')
+const {editFilter}             = require('../controllers/index')
+const {deleteFilter}           = require('../controllers/index')
+const {fetchFiltersInfo}       = require('../controllers/index')
 
 const handeler = async (req, res)=>{
      console.log('this is handeler')
@@ -62,9 +66,9 @@ router.post('/register',register)//
 
 router.post('/login',login)//
 
-router.put('/homepage',requireAdminLogin,editTitle)
+router.put('/homepage',requireAdminLogin,editTitle)//
 
-router.get('/images/:uui',sendImage)
+router.get('/images/:uui',sendImage)//
 
 router.post('/admins',requireAdminLogin, isOwner, createAdmin)//
 
@@ -94,7 +98,7 @@ router.put('/products/:id',requireAdminLogin, editProduct)//
 
 router.post('/categories',requireAdminLogin,createCategory)//
 
-router.post('/categories/:id',requireAdminLogin,uploadMiddleware,addCategoryImage)
+router.post('/categories/:id',requireAdminLogin,uploadMiddleware,addCategoryImage)//
 
 router.delete('/categories/:id',requireAdminLogin,deleteCategory)//
 
@@ -104,7 +108,7 @@ router.get('/categories',fetchCategories)//
 
 router.post('/subcategory',requireAdminLogin,createSubCategory)//
 
-router.post('/subcategory/:subcategoryid',requireAdminLogin,uploadMiddleware,editSubCategoryImage)
+router.post('/subcategory/:subcategoryid',requireAdminLogin,uploadMiddleware,editSubCategoryImage)//
 
 router.get('/subcategory',getSubCategoryInfo)//
 
@@ -114,6 +118,14 @@ router.delete('/subcategory/:subcategoryid',requireAdminLogin,deleteSubCategory)
 
 router.put('/subcategory/:subcategoryid',requireAdminLogin,updateSubCategory)//
 
+router.post('/:subcategoryid/newfilter',requireAdminLogin,addFilter)
+
+router.put('/:subcategoryid/:filterid',requireAdminLogin,editFilter)
+
+router.delete('/:subcategoryid/:filterid',requireAdminLogin,deleteFilter)
+
+router.get('/filters',requireAdminLogin,fetchFiltersInfo)
+
 router.post('/carousel',requireAdminLogin,uploadMiddleware,addCarouselImage)//
 
 router.get('/carousel',carouselInfo)//
@@ -122,11 +134,11 @@ router.delete('/carousel/:id',requireAdminLogin,deleteCarouselImage)//
 
 router.put('/carousel/:id',requireAdminLogin,editCarousel)//
 
-router.post('/user/me',isUserAuthenticated,addUserFavoriteProduct)
+router.post('/user/me',isUserAuthenticated,addUserFavoriteProduct)//
 
-router.get('/user/me',isUserAuthenticated,getUserPersonalInfo)
+router.get('/user/me',isUserAuthenticated,getUserPersonalInfo)//
 
-router.get('/users',requireAdminLogin,getUsersInfo)
+router.get('/users',requireAdminLogin,getUsersInfo)//
 
 
 
