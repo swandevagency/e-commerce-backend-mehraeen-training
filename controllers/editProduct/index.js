@@ -32,7 +32,7 @@ module.exports = async (req, res) =>{
     }
     try {
         const product = await mongoose.model('Product').findOne({_id})
-        await product.updateOne({name, description, price, categoryId})
+        await product.updateOne({name, description, price, category : categoryId, discount})
         res.status(200).send({
             msg : 'product updated',
             product
