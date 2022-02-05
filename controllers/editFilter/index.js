@@ -53,6 +53,7 @@ module.exports = async (req, res) =>{
             msg : 'filter successfully updated',
             repetitiveFilter
         })
+        return
     }
     await mongoose.model('Filter').updateOne({_id : filterid},{
         filterName,
