@@ -15,7 +15,7 @@ const initiateApplication = require('./initiate_application/index')
 
 // connecting to database
 
-mongoose.connect('mongodb://localhost:27017/e-commers')
+mongoose.connect('mongodb://localhost:27017/e-commerce')
 .then(() => {console.log('database is connected')},
 err => {console.log('can not connect to database')})
 
